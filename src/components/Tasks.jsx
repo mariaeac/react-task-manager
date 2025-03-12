@@ -1,4 +1,4 @@
-import { ListCollapse } from "lucide-react";
+import { ListCollapse, Trash2 } from "lucide-react";
 
 function Tasks(taskProps) {
   return (
@@ -8,12 +8,21 @@ function Tasks(taskProps) {
           <li key={task.id} className="flex gap-2">
             <button
               onClick={() => taskProps.onTaskClick(task.id)}
-              className="bg-slate-800 text-white text-left p-2 rounded-md w-full"
+              className={`bg-slate-800 text-white text-left p-2 rounded-md w-full ${
+                task.isCompleted && "line-through"
+              }`}
             >
               {task.title}
             </button>
             <button className="bg-slate-800 text-white p-2  rounded-md">
               <ListCollapse />
+            </button>
+
+            <button
+              onClick={() => taskProps.onDeleteClick(task.id)}
+              className="bg-slate-800 text-white p-2  rounded-md"
+            >
+              <Trash2 />
             </button>
           </li>
         ))}
