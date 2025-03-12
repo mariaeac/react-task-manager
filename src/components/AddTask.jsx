@@ -18,7 +18,7 @@ function AddTask({ onTaskSubmit }) {
         placeholder="Descrição da tarefa"
         value={description}
         onChange={() => setDescription(event.target.value)}
-       />
+      />
       <button
         onClick={() => {
           if (!title.trim() || !description.trim()) {
