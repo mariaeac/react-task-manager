@@ -1,6 +1,16 @@
 import { ListCollapse, Trash2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 function Tasks({ tasks, onTaskClick, onDeleteClick }) {
+  const navigate = useNavigate();
+
+  function onDetailsClick(task) {
+    const query = new URLSearchParams();
+    query.set("title", task.title);
+    query.set("description", task.description);
+    navigate(`/task-details?${query.toString()}`);
+  }
+
   return (
     <div className="pt-10">
       <ul className="space-y-4 p-8 bg-slate-500 rounded-md shadow-2xl">
@@ -14,7 +24,10 @@ function Tasks({ tasks, onTaskClick, onDeleteClick }) {
             >
               {task.title}
             </button>
-            <button className="bg-slate-800 text-white p-2  rounded-md">
+            <button
+              onClick={() => onDetailsClick(task)}
+              className="bg-slate-800 text-white p-2  rounded-md"
+            >
               <ListCollapse />
             </button>
 
